@@ -1,9 +1,16 @@
-import hamburguer.Hamburguer;
+import java.util.Map;
+
+import cashRegister.CashRegisterComposite;
 import hamburguer.HamburguerFactory;
+import product.Product;
 
 public class FastFood {
     public static void main(String[] args) {
-        Hamburguer[] menu = FriesFactory.execute();    
-        System.out.println(menu[1].name);
+        Map<String, Product> menu = HamburguerFactory.execute();
+        CashRegisterComposite cashRegisterComposite = new CashRegisterComposite();
+
+        cashRegisterComposite.add(menu.get("Hamburguer"));
+        cashRegisterComposite.add(menu.get("XBurguer"));
+        System.out.println(cashRegisterComposite.amount());
     }
 }
