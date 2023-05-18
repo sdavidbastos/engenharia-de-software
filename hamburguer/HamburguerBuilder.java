@@ -3,7 +3,7 @@ package hamburguer;
 public class HamburguerBuilder {
 
     private String name = "Hamburguer";
-    private Double price = 0.00;
+    private double price = 0;
     private int quantityMeat = 1;
     private boolean salad = true;
     private boolean cheese = false;
@@ -14,7 +14,7 @@ public class HamburguerBuilder {
         return this;
     }
 
-    public HamburguerBuilder setPrice(Double price) {
+    public HamburguerBuilder setPrice(double price) {
         this.price = price;
         return this;
     }
