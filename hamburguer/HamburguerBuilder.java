@@ -2,12 +2,12 @@ package hamburguer;
 
 public class HamburguerBuilder {
 
-    private String name = "Hamburguer";
-    private double price = 0;
+    private String name = "" + HamburguerEnum.HAMBURGUER;
+    private double price = 10;
     private int quantityMeat = 1;
-    private boolean salad = true;
     private boolean cheese = false;
     private boolean egg = false;
+    private boolean bacon = false;
 
     public HamburguerBuilder setName(String name) {
         this.name = name;
@@ -24,11 +24,6 @@ public class HamburguerBuilder {
         return this;
     }
 
-    public HamburguerBuilder setSalad(boolean salad) {
-        this.salad = salad;
-        return this;
-    }
-
     public HamburguerBuilder setCheese(boolean cheese) {
         this.cheese = cheese;
         return this;
@@ -38,9 +33,14 @@ public class HamburguerBuilder {
         this.egg = egg;
         return this;
     }
+    
+    public HamburguerBuilder setBacon(boolean bacon) {
+        this.bacon = bacon;
+        return this;
+    }
 
     public Hamburguer build() {
-        return new Hamburguer(name, price, quantityMeat, salad, cheese, egg);
+        return new Hamburguer(name, price, quantityMeat, cheese, egg, bacon);
     }
 
 }
