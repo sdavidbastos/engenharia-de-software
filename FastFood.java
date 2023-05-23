@@ -1,40 +1,45 @@
 import java.util.Map;
 
-import cashRegister.CashRegisterComposite;
+import additional.Additional;
+import cashregister.CashRegisterComposite;
 import discount.BlackFridayStrategy;
 import discount.DiscountStrategy;
 import hamburguer.HamburguerEnum;
 import hamburguer.HamburguerFactory;
-import ingredients.IIngredientDecorator;
-import ingredients.IngredientAdapter;
-import ingredients.WithoutOnionDecorator;
-import ingredients.WithoutTomatoDecorator;
+import order.IOrderObserver;
+import order.IOrderSubject;
+import order.OrderObserver;
+import order.OrderSubject;
+import product.IProduct;
 import product.Product;
 
 public class FastFood {
     public static void main(String[] args) {
         Map<String, Product> menu = HamburguerFactory.execute();
-        CashRegisterComposite cashRegisterComposite = new CashRegisterComposite(new DiscountStrategy());
-        CashRegisterComposite cashRegisterCompositeBlackFriday = new CashRegisterComposite(new BlackFridayStrategy());
+        
+        IOrderSubject eventManagerScreen = new OrderSubject();
+        
+        CashRegisterComposite cashRegisterComposite = new CashRegisterComposite(new DiscountStrategy(), eventManagerScreen);
+        CashRegisterComposite cashRegisterCompositeBlackFriday = new CashRegisterComposite(new BlackFridayStrategy(), eventManagerScreen);
 
-        Product hamburguer = menu.get("" + HamburguerEnum.HAMBURGUER);
-        Product xBacon = menu.get("" + HamburguerEnum.XBACON);
-
-        IIngredientDecorator hamburguerDescription = new WithoutTomatoDecorator(
-                new WithoutOnionDecorator(new IngredientAdapter(hamburguer)));
+        IProduct hamburguer = menu.get("" + HamburguerEnum.HAMBURGUER);
+        IProduct xBacon = menu.get("" + HamburguerEnum.XBACON);
+        IProduct hamburguerWithoutSalad = new Additional(new Additional(new Additional(xBacon, ", Sem Tomate"), ", Sem Cebola"), ", Bacon Extra", 5);
+        
+        IOrderObserver roomScreen = new OrderObserver("Sala");
+        IOrderObserver kitchenScreen = new OrderObserver("Cozinha");
 
         cashRegisterComposite.add(hamburguer);
-        cashRegisterComposite.add(xBacon);
+        cashRegisterComposite.add(hamburguerWithoutSalad);
 
         cashRegisterCompositeBlackFriday.add(hamburguer);
         cashRegisterCompositeBlackFriday.add(hamburguer);
         cashRegisterCompositeBlackFriday.add(xBacon);
         cashRegisterCompositeBlackFriday.add(xBacon);
-        
-        System.out.println(cashRegisterComposite.total);
-        System.out.println(cashRegisterComposite.amount());
-        
-        System.out.println(cashRegisterCompositeBlackFriday.total);
-        System.out.println(cashRegisterCompositeBlackFriday.amount());
+
+        eventManagerScreen.subscribe(kitchenScreen); 
+        eventManagerScreen.subscribe(roomScreen);
+
+        System.out.println(cashRegisterComposite.produceProduct());
     }
 }

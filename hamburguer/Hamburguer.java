@@ -9,8 +9,8 @@ public class Hamburguer extends Product {
     public boolean bacon;
 
     public Hamburguer(String name, double price, int quantityMeat, boolean cheese,  boolean egg, boolean bacon) {
-        this.name = name;
-        this.price = price;
+        super.name = name;
+        super.price = price;
         this.quantityMeat = quantityMeat;
         this.cheese = cheese;
         this.egg = egg;
