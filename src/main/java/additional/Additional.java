@@ -1,11 +1,11 @@
 package additional;
 
-import product.IProduct;
+import Product.IProduct;
 
 public class Additional extends AdditionalDecorator {
 
-    private String additional;
-    private double additionalPrice = 0; 
+    private final String additional;
+    private double additionalPrice = 0;
 
     public Additional(IProduct product, String additional, double additionalPrice) {
         super(product);
@@ -27,5 +27,5 @@ public class Additional extends AdditionalDecorator {
     public double getPrice() {
         return super.getPrice() + this.additionalPrice;
     }
-    
+
 }

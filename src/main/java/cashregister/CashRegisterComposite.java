@@ -2,15 +2,16 @@ package cashregister;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import discount.IDiscountStrategy;
 import order.IOrderSubject;
-import product.IProduct;
+import Product.IProduct;
 
 public class CashRegisterComposite {
-    private List<IProduct> products = new ArrayList<IProduct>();
+    public List<IProduct> products = new ArrayList<>();
     public double total = 0.0;
-    private IDiscountStrategy discountStrategy;
-    private IOrderSubject orderSubject;
+    private final IDiscountStrategy discountStrategy;
+    private final IOrderSubject orderSubject;
 
     public CashRegisterComposite(IDiscountStrategy discountStrategy, IOrderSubject orderSubject) {
         this.discountStrategy = discountStrategy;
@@ -32,7 +33,7 @@ public class CashRegisterComposite {
         return this.discountStrategy.execute(quantity) * this.total;
     }
 
-    public double produceProduct(){
+    public double produceProduct() {
         this.orderSubject.notifySubscribes(this.products);
         return this.amount();
     }

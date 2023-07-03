@@ -10,8 +10,8 @@ import order.IOrderObserver;
 import order.IOrderSubject;
 import order.OrderObserver;
 import order.OrderSubject;
-import product.IProduct;
-import product.Product;
+import Patterns.IProduct;
+import Patterns.Product;
 
 public class FastFood {
     public static void main(String[] args) {

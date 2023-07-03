@@ -1,10 +1,10 @@
 package additional;
 
-import product.IProduct;
+import Product.IProduct;
 
-public abstract class AdditionalDecorator implements IProduct{
+public abstract class AdditionalDecorator implements IProduct {
     private final IProduct productDecorator;
-    
+
     public AdditionalDecorator(IProduct productDecorator) {
         this.productDecorator = productDecorator;
     }
@@ -18,5 +18,5 @@ public abstract class AdditionalDecorator implements IProduct{
     public double getPrice() {
         return this.productDecorator.getPrice();
     }
-    
+
 }

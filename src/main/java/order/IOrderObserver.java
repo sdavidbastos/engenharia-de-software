@@ -2,8 +2,8 @@ package order;
 
 import java.util.List;
 
-import product.IProduct;
+import Product.IProduct;
 
 public interface IOrderObserver {
-    void execute(List<IProduct> products);
+    String execute(List<IProduct> products);
 }

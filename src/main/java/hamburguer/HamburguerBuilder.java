@@ -2,7 +2,7 @@ package hamburguer;
 
 public class HamburguerBuilder {
 
-    private String name = "" + HamburguerEnum.HAMBURGUER;
+    private String name = String.valueOf(HamburguerEnum.HAMBURGUER);
     private double price = 10;
     private int quantityMeat = 1;
     private boolean cheese = false;
@@ -33,7 +33,7 @@ public class HamburguerBuilder {
         this.egg = egg;
         return this;
     }
-    
+
     public HamburguerBuilder setBacon(boolean bacon) {
         this.bacon = bacon;
         return this;

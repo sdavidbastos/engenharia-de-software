@@ -1,4 +1,4 @@
-package product;
+package Product;
 
 public abstract class Product implements IProduct {
     public String name;

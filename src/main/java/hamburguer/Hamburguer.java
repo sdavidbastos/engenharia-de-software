@@ -1,6 +1,6 @@
 package hamburguer;
 
-import product.Product;
+import Product.Product;
 
 public class Hamburguer extends Product {
     public int quantityMeat;
@@ -8,7 +8,7 @@ public class Hamburguer extends Product {
     public boolean egg;
     public boolean bacon;
 
-    public Hamburguer(String name, double price, int quantityMeat, boolean cheese,  boolean egg, boolean bacon) {
+    public Hamburguer(String name, double price, int quantityMeat, boolean cheese, boolean egg, boolean bacon) {
         super.name = name;
         super.price = price;
         this.quantityMeat = quantityMeat;
